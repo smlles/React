@@ -1,6 +1,7 @@
 import logo from './logo.svg';
 import './App.css';
 import Todo from './Todo';
+import { Example } from './Example';
 
 function App() {
   return (
@@ -21,7 +22,7 @@ function App() {
       </header>*/}
       <Todo />
       <Todo />
-      
+      <Example></Example>
     </div>
   );
 }
