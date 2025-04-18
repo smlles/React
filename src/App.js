@@ -21,7 +21,7 @@ function App() {
   ]) 
   
   //Todo를 직접 추가하기 위한 백엔드 콜을 대신 할 가짜 함수만들기
-  const add = (item) => {
+  const add = (item) => { // AddTodo 갔다가 객체를 가지고 돌아왔음
     //newItem 객체가 하나의 Todo
     const newItem = {
       ...item,//이자리에 title 들어감

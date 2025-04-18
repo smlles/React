@@ -49,7 +49,8 @@ const AddTodo = ({add}) =>{
       return;
     }
     //props로 넘어온 add함수를 여기서 호출
-    add(item); //add({title : '내용'})
+    add(item); //add({title : '내용'}) 
+    //item에 title: ~~ 라고 되어있긴 한데 초기값이라 안 넘어오는듯?
     setItem({title:""})//함수에 전달하고 나면 입력필드 비우기
   }
   //엔터키 = 버튼과 같은 효과
