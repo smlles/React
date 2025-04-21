@@ -39,6 +39,21 @@ function App() {
 
   }
 
+  //삭제를 해주는 deleteItem()함수 만들기
+  //DB에서 어떻게 했지?
+  //delete from 테이블 where id=0; 
+  const deleteItem = (item) => {
+    //배열에서 삭제하려고 하는 아이템을 찾는다.
+    const newItems = items.filter(e => e.id !== item.id);
+    //삭제할 아이템을 제외한 아이템을, 다시 배열에 지정
+    setItem([...newItems]);
+  }
+
+
+    const editItem = () => {
+      setItem([...items]); //얘가 재 랜더링 함
+    }
+
   //react는 key속성값을 참조해서  리스트의 요소가 변경 될 경우, 
   // 어떤 요소가 변경되었는지 빠르게 파악 할 수 있다.
   //                    //배열의 내용이 있다면 렌더링해라
@@ -50,7 +65,7 @@ function App() {
   <Paper style={{margin: 16}}>
     <List>{/*일련의 항목을 세로로 나열하는 컨테이너 역할*/}
       {items.map((item) => (
-        <Todo item={item} key={item.id} />
+        <Todo item={item} key={item.id} deleteItem={deleteItem} editItem={editItem}/>
       ))}
     </List>
   </Paper>

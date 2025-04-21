@@ -79,7 +79,8 @@ const AddTodo = ({add}) =>{
         </Grid>
         <Grid>
           <Button 
-            fullWidth style={{heigth:'100%'}} 
+            fullWidth 
+            style={{heigth:'100%'}} 
             color="secondary" 
             variant='outlined'
             onClick={onButtonClick}
