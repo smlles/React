@@ -65,7 +65,7 @@ const AddTodo = ({add}) =>{
       container 
       style ={ {marginTop : 20} }
       justifyContent="center"
-      alignItems="center"
+     // alignItems="center"
       >
         <Grid xs={11} md={11} item style={{paddingRight : 16}}> 
           <TextField 

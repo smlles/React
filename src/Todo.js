@@ -21,8 +21,7 @@ import { DeleteOutlined } from '@mui/icons-material';
 let Todo = (props) => {
 
   const editEventHandler = (e) => {
-    item.title = e.target.value;
-    editItem();
+    setItem({...item,title:e.target.value})
   }
 
   const editItem=props.editItem;
@@ -45,9 +44,11 @@ let Todo = (props) => {
   
 
   const turnOnReadOnly =(e)=>{
-    if(e.key == 'Enter'){
-      setReadOnly(true);
+    if(e.key == 'Enter'&& readOnly===false){
+      setReadOnly(true);//readOnly true => 읽기만 허용
+      editItem(item)
     }
+
   }
   //삭제함수
   const deleteItem = props.deleteItem;
@@ -59,7 +60,7 @@ let Todo = (props) => {
   //체크박스 변경함수
   const checkBoxEventHandler = (e) => {
     item.done = e.target.checked;
-    editItem();
+    editItem(item);
   }
 
   return(

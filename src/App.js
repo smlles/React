@@ -1,11 +1,13 @@
-import { useState } from 'react';
+import { useState,useEffect } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import Todo from './Todo';
 import { Example } from './Example';
 import { Greeting,Farewell } from './Greeting';
-import {Container,List, Paper} from '@mui/material'
-import AddTodo from './AddTodo'
+import {Container,List, Paper} from '@mui/material';
+import AddTodo from './AddTodo';
+import axios from 'axios';
+import {call} from './service/ApiService'
 
 //Container
 //레이아웃의 가로폭을 제한하고, 
@@ -19,40 +21,38 @@ function App() {
 //{여기에 아이디 어쩌고 했었음  
 //}
   ]) 
+//최초 랜더링시 1번만 실행
+useEffect(()=>{
+  //조회
+  call("/todo","GET")
+    .then(result=>setItem(result.data))
+  
+
+},[]);
+  
   
   //Todo를 직접 추가하기 위한 백엔드 콜을 대신 할 가짜 함수만들기
   const add = (item) => { // AddTodo 갔다가 객체를 가지고 돌아왔음
-    //newItem 객체가 하나의 Todo
-    const newItem = {
-      ...item,//이자리에 title 들어감
-      // 스프레드연산자 ... <- 반복가능객체 (배열)나 객체의 프로퍼티를 펼친다.
-      //복사,병합,분해등의 작업을 간결하게 해주는 문법
-      id: "ID-" + items.length,
-      done:false,
-    } 
-    //상태를 변화시키는 함수를 호출하면
-    //state에 변경 사항이 화면에 적용이 된다.
-    setItem(prev => [...prev, newItem]) 
-    //prev가 없으면 useState의 초기값으로 들어감
-    //있으면 items의 이전 값으로 들어감
-    console.log("items : ",[...items,newItem])
-
+   //DB에 추가하기 위해 백엔드로 데이터를 전달
+   call("/todo","POST",item)
+   .then(result=>setItem(result.data))
+  //데이터를 추가하고, 전체 데이터를 받아서 state에 세팅하고
+  //다시 렌더링이 일어남
   }
 
   //삭제를 해주는 deleteItem()함수 만들기
   //DB에서 어떻게 했지?
   //delete from 테이블 where id=0; 
   const deleteItem = (item) => {
-    //배열에서 삭제하려고 하는 아이템을 찾는다.
-    const newItems = items.filter(e => e.id !== item.id);
-    //삭제할 아이템을 제외한 아이템을, 다시 배열에 지정
-    setItem([...newItems]);
+   call("/todo","DELETE",item)
+    .then(result=>setItem(result.data))
   }
 
 
-    const editItem = () => {
-      setItem([...items]); //얘가 재 랜더링 함
-    }
+  const editItem = (item) => {
+   call("/todo","PUT",item)
+    .then(result=>setItem(result.data))
+  }
 
   //react는 key속성값을 참조해서  리스트의 요소가 변경 될 경우, 
   // 어떤 요소가 변경되었는지 빠르게 파악 할 수 있다.
