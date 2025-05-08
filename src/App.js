@@ -34,7 +34,9 @@ useEffect(()=>{
   //Todo를 직접 추가하기 위한 백엔드 콜을 대신 할 가짜 함수만들기
   const add = (item) => { // AddTodo 갔다가 객체를 가지고 돌아왔음
    //DB에 추가하기 위해 백엔드로 데이터를 전달
+   //POST요청은 URL에 data가 body로 전달되므로 data값이 필요
    call("/todo","POST",item)
+   //call메서드의 결과는 Promise이므로 .then을 이어 쓸 수 있다.
    .then(result=>setItem(result.data))
   //데이터를 추가하고, 전체 데이터를 받아서 state에 세팅하고
   //다시 렌더링이 일어남

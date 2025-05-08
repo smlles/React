@@ -1,7 +1,8 @@
 import axios from "axios";
 import { API_BASE_URL } from "../api-config";
 
-//요청하는 메서드 만들기
+//비동기 호출을 대신 해주는 메서드
+//백엔드에 요청을 대신하는 메서드 만들기
 //api : 호출 할 api의 경로(/todo,/users)
 //method : http메서드 (GET,POST,PUT,DELETE)
 //request : 요청에 담을 데이터(주로 POST,PUT에서 사용)
@@ -13,7 +14,7 @@ export function call(api,method,request){
     headers : {
       "Content-Type":"application/json"
     }
-    //data : ~~~
+    //요청이 있다면 ,data : ~~~
   }
   //false,0,빈문자,null,undefined,NaN -> false
   if(request){
