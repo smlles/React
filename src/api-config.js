@@ -22,7 +22,7 @@ const hostname = window && window.location && window.location.hostname;
 //http://localhost:10000/todo
 //hostname -> localhost
 if(hostname == "localhost"){
-  backendHost = "http://localhost:10000";
+  backendHost = "http://localhost:10000"; //도메인이 바뀌면 얘만 바꾸면 된다.
 }
 
 export const API_BASE_URL = `${backendHost}`;

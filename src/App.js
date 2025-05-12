@@ -25,7 +25,7 @@ function App() {
 useEffect(()=>{
   //조회
   call("/todo","GET")
-    .then(result=>setItem(result.data))
+    .then(result=>setItem(result))
   
 
 },[]);
